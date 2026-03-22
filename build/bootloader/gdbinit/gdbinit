@@ -1,0 +1,2 @@
+source L:/solsector_repo/wakenet/build/bootloader/gdbinit/symbols
+source L:/solsector_repo/wakenet/build/bootloader/gdbinit/connect

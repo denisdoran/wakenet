@@ -1,0 +1,13 @@
+{
+    "idf.currentSetup": "C:/Espressif/frameworks/esp-idf-v5.5.3/",
+    "idf.flashType": "UART",
+    "idf.portWin": "COM6",
+    "idf.openOcdConfigs": [
+        "board/esp32s3-builtin.cfg"
+    ],
+    "idf.customExtraVars": {
+        "IDF_TARGET": "esp32s3"
+    },
+    "simpleBrowserOpener.autoDetectPort": false,
+    "simpleBrowserOpener.serverUrl": "localhost:5678/webhook/c2afd27f-ba68-420f-a21b-75b7b0453587/chat"
+}

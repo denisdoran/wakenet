@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "L:/solsector_repo/wakenet/build/CMakeFiles/bootloader"
+		},
+		{
+			"file" : "L:/solsector_repo/wakenet/build/CMakeFiles/bootloader.rule"
+		},
+		{
+			"file" : "L:/solsector_repo/wakenet/build/CMakeFiles/bootloader-complete.rule"
+		},
+		{
+			"file" : "L:/solsector_repo/wakenet/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule"
+		},
+		{
+			"file" : "L:/solsector_repo/wakenet/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule"
+		},
+		{
+			"file" : "L:/solsector_repo/wakenet/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule"
+		},
+		{
+			"file" : "L:/solsector_repo/wakenet/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule"
+		},
+		{
+			"file" : "L:/solsector_repo/wakenet/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule"
+		},
+		{
+			"file" : "L:/solsector_repo/wakenet/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule"
+		},
+		{
+			"file" : "L:/solsector_repo/wakenet/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"bootloader"
+		],
+		"name" : "bootloader"
+	}
+}
