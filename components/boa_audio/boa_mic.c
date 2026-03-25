@@ -55,7 +55,7 @@ void boa_mic_init(int bclk_pin, int ws_pin, int sd_pin, int sample_rate)
 
 
 // ============================================================
-//  MIC READ
+//  MIC READ  (with attenuation applied)
 // ============================================================
 bool boa_mic_read(int16_t *buffer, size_t samples)
 {
@@ -72,16 +72,23 @@ bool boa_mic_read(int16_t *buffer, size_t samples)
     }
 
     // Convert 32‑bit left‑justified to 16‑bit PCM
-    for (size_t i = 0; i < samples; i++) {
-        buffer[i] = (int16_t)(raw32[i] >> 12);
-    }
+    // AND apply digital attenuation 
+for (size_t i = 0; i < samples; i++) {
+    int16_t s = (int16_t)(raw32[i] >> 12);
+
+    // Gentle digital attenuation (~ -2.5 dB)
+    s = (s * 3) / 4;
+
+    buffer[i] = s;
+}
+
 
     return true;
 }
 
 
 // ============================================================
-//  RMS CALCULATION
+//  RMS CALCULATION (now sees attenuated samples)
 // ============================================================
 int boa_mic_rms(const int16_t *buffer, size_t samples)
 {
@@ -116,13 +123,13 @@ void boa_mic_led_init(void)
 
 
 // ============================================================
-//  MIC LEVEL → LED BRIGHTNESS
+//  MIC LEVEL → LED BRIGHTNESS (now matches attenuated signal)
 // ============================================================
 void boa_mic_led_set_level(int rms)
 {
     if (!boa_led) return;
 
-    // New noise floor: ignore everything below ~6000
+    // New noise floor: ignore everything below ~6000 (post-attenuation)
     if (rms < 6000) {
         led_strip_set_pixel(boa_led, 0, 0, 0, 0);
         led_strip_refresh(boa_led);
@@ -142,7 +149,6 @@ void boa_mic_led_set_level(int rms)
     led_strip_set_pixel(boa_led, 0, r, g, b);
     led_strip_refresh(boa_led);
 }
-
 
 
 
@@ -206,4 +212,3 @@ void boa_mic_pulse_gpio(int pin)
     vTaskDelay(pdMS_TO_TICKS(150));
     gpio_set_level(pin, 0);
 }
-
