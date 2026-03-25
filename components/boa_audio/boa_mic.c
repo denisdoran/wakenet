@@ -185,7 +185,8 @@ void boa_mic_beep(void)
 }
 
 
-void boa_mic_pulse_gpio(int pin)
+
+void boa_mic_gpio_init(int pin)
 {
     gpio_config_t io_conf = {
         .pin_bit_mask = 1ULL << pin,
@@ -196,7 +197,13 @@ void boa_mic_pulse_gpio(int pin)
     };
     gpio_config(&io_conf);
 
-    gpio_set_level(pin, 1);
-    vTaskDelay(pdMS_TO_TICKS(250));   // 0.25 seconds
     gpio_set_level(pin, 0);
 }
+
+void boa_mic_pulse_gpio(int pin)
+{
+    gpio_set_level(pin, 1);
+    vTaskDelay(pdMS_TO_TICKS(150));
+    gpio_set_level(pin, 0);
+}
+

@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "wakenet",
-    "project_version":    "1",
+    "project_version":    "be2b99e-dirty",
     "project_path":       "L:/solsector_repo/wakenet",
     "idf_path":           "C:/Espressif/frameworks/esp-idf-v5.5.3",
     "build_dir":          "L:/solsector_repo/wakenet/build",

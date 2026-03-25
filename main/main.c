@@ -11,6 +11,7 @@
 #include "model_path.h"
 
 #include "boa_mic.h"
+//#include "driver/gpio.h"
 
 #define MIC_BCLK_PIN  42
 #define MIC_WS_PIN     2
@@ -68,8 +69,11 @@ void app_main(void)
     // --- Initialize onboard RGB LED (mic level indicator) ---
     boa_mic_led_init();
 
-    int cooldown = 0;
+    // --- Initialize external LED on GPIO18 ---
+    boa_mic_gpio_init(18);
 
+
+    int cooldown = 0;
     while (1) {
 
         // --- Read audio frame ---
@@ -88,8 +92,14 @@ void app_main(void)
             cooldown--;
         }
 
-        if (state == WAKENET_DETECTED && cooldown == 0) {
+    if (state == WAKENET_DETECTED && cooldown == 0) {
+            // External LED flash
+            boa_mic_pulse_gpio(18);   // clean, simple, reusable
+
+            //  beep
             boa_mic_beep();
+
+            // report to terminal
             printf("🎉 Detected Wake Word: \"Hi, ESP\" 🎉\n");
             cooldown = 30;
         }
